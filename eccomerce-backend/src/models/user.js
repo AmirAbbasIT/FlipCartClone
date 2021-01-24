@@ -35,13 +35,13 @@ const userSchema = new mongoose.Schema({
     }
 },{timestamps:true});
 
-userSchema.virtual("password").set(async function(password){
-    this.hashed_password=await bcrypt.hash(password,10);
+userSchema.virtual("password").set( function(password){
+    this.hashed_password=bcrypt.hashSync(password,10);
 });
 
 userSchema.methods={
-    authenticate:async function(password){
-        return await bcrypt.compare(password,this.hashed_password);
+    authenticate: function(password){
+        return  bcrypt.compareSync(password,this.hashed_password);
     }
 }
 

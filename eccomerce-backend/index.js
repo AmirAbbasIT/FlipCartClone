@@ -14,8 +14,10 @@ app.use(express.json())
 
 //import Routers
 const authRouter=require("./src/routes/userRoute")
+const authAdminRouter=require("./src/routes/admin/adminRoute")
 ///register Routes
 app.use("/api",authRouter);
+app.use("/api/admin",authAdminRouter);
 
 app.get("/",(req,res,next)=>{
     res.status(200).send("Nice to meet you");
